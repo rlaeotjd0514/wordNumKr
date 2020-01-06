@@ -11,7 +11,7 @@ class NumwWord {
 private:
 	string comm[21] = { "", "십", "백", "천", "만", "억", "조", "경", "해", "자", "양", "구", "간", "정", "재", "극", "항하사", "아승지", "나유타", "불가사의", "무량대수" };
 public:
-	string words(unsigned long long num) {
+	string numtowords(unsigned long long num) {
 		string ret;
 		string barrel;
 		//list<char> barrel;		
@@ -55,10 +55,10 @@ public:
 		}		
 		const char * barrelc = barrel.c_str();
 		MessageBox(0, (LPCSTR)barrelc, "dd", MB_OK);
-		scnt += (int)barrel.length() / 8;
+		scnt += ((int)barrel.length() - 1) / 8;
 		cnt = ((int)barrel.length() / 2 - 1) % 4;
 		for (int i = barrel.length() - 2; i >= 0; i-=2) {
-			if ((cnt == 0 || barrel.substr(i, 2) != "일") && barrel.substr(i, 2) != "영") {
+			if ((cnt == 0 && barrel.substr(i, 2) != "영") || barrel.substr(i, 2) != "영") {
 				ret += barrel.substr(i, 2);				
 			}	
 			if (barrel.substr(i, 2) != "영") {
@@ -67,13 +67,17 @@ public:
 			cnt--;
 			if (cnt < 0) {
 				cnt = 3;
-				if (scnt > 3 && barrel.substr(i, 2) != "영") {
+				if (scnt > 3) {
 					ret += comm[scnt--];
 				}
 			}
 		}
 		MessageBox(0, (LPCSTR)ret.c_str(), "dd", MB_OK);
 		return ret;
+	}
+
+	string wordtonum(string nc) {
+
 	}
 
 };

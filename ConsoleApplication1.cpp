@@ -64,7 +64,7 @@ int main(int argc, char * argv[]) {
 	B->Print_Key();
 	B->~abc();*/
 	NumwWord nw;
-	printf("words 123456789123456789 : %s", nw.words(123123123).c_str());
+	printf("words 123456789123456789 : %s", nw.numtowords(159753).c_str());
 	return 0;
 }
 
